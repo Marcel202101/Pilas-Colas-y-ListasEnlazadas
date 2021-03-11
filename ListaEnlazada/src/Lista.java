@@ -1,3 +1,7 @@
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Lista {
     Nodo cabeza,fin;
     int tam ;
@@ -39,13 +43,31 @@ public class Lista {
     }
     
     public Object buscar(int o){
-        int cont = 0;
+        int cont = 1;
         Nodo temp = cabeza;
-        while(cont<o){
-            temp = temp.obtenerSiguiente();
+        if(cont == o){
+            return temp.valor;
+        }else{
+            while(cont<o){
+                temp = temp.obtenerSiguiente();
+                cont++;
+            }
+            return temp.valor;
+        }
+    }
+    
+     public List BuscarItem(int item){
+        List lista = new ArrayList();
+        int cont = 1;
+        Nodo recorrido = cabeza;
+        while(cont<tam+1){
+            if(item == (int)recorrido.valor){
+                lista.add(cont);
+            }
+            recorrido = recorrido.siguiente;
             cont++;
         }
-        return temp;
+        return lista;
     }
     
     public void eliminar(){

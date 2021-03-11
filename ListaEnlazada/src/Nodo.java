@@ -9,7 +9,7 @@ public class Nodo {
     }
     
     public Object obtenerV(){
-        return valor;
+        return this.valor;
     }
     
     public void enlazar(Nodo n){
