@@ -1,13 +1,23 @@
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class Colas {
     private Nodo inicioCola, finalCola;
     String Cola = "";
-    
+    int tam = 0;
     public Colas(){
         inicioCola = null;
         finalCola = null;
     }
     
+    public void Vaciar(){
+        inicioCola = null;
+        finalCola = null;
+        tam = 0;
+        String Cola = "";
+    }
     public boolean ColaVacia(){
         if (inicioCola ==null) {
             return true;
@@ -15,7 +25,32 @@ public class Colas {
             return false;
         }
     }
-    
+    public int Buscar( int pos){
+        Nodo recorrido = inicioCola;
+        int cont = 1;
+        if(pos == cont){
+            return recorrido.informacion;
+        }else{
+            while(cont < pos){
+                recorrido = recorrido.siguiente;
+                cont++;
+            }
+            return recorrido.informacion;
+        }    
+    }
+    public List BuscarItem(int item){
+        List lista = new ArrayList();
+        int cont = 1;
+        Nodo recorrido = inicioCola;
+        while(cont<tam+1){
+            if(item == recorrido.informacion){
+                lista.add(cont);
+            }
+            recorrido = recorrido.siguiente;
+            cont++;
+        }
+        return lista;
+    }
     public void Insertar(int informacion){
         Nodo nuevo = new Nodo();
         nuevo.informacion = informacion;
@@ -28,10 +63,14 @@ public class Colas {
             finalCola.siguiente = nuevo;
             finalCola = nuevo;
         }
+        tam++;
     }
-    
+    public int Tamano(){
+        return tam;
+    }
     public int Extraer(){
         if(!ColaVacia()){
+            tam--;
             int informacion = inicioCola.informacion;
             if (inicioCola == finalCola) {
                 inicioCola = null;

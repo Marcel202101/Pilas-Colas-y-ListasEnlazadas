@@ -1,3 +1,7 @@
+
+import java.util.ArrayList;
+import java.util.List;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -51,7 +55,33 @@ public class Pila {
             Eliminar();
         }
     }
-    
+    public int Buscar( int o){
+        int cont = 1;
+        Nodo recorrer = ultimo;
+        
+        if(cont == o){
+            return recorrer.info;
+        }else{
+            while(recorrer != null && cont < o){
+                cont++;
+                recorrer = recorrer.siguiente;
+            }
+            return recorrer.info;
+        } 
+    }
+    public List BuscarItem(int item){
+        List lista = new ArrayList();
+        int cont = 1;
+        Nodo recorrido = ultimo;
+        while(cont<tamano+1){
+            if(item == recorrido.info){
+                lista.add(cont);
+            }
+            recorrido = recorrido.siguiente;
+            cont++;
+        }
+        return lista;
+    }
     public void Mostrar(){
         Nodo recorrer = ultimo;
         

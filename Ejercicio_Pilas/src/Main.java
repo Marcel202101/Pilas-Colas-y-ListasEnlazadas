@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 public class Main {
 
@@ -16,8 +17,10 @@ public class Main {
         System.out.println("4.- Ultimo Valor");
         System.out.println("5.- Cantidad de Nodos");
         System.out.println("6.- Vaciar");
-        System.out.println("7.- Mostrar");
-        System.out.println("8.- Salir\n");
+        System.out.println("7.- Buscar por posicion");
+        System.out.println("8.- Buscar por item");
+        System.out.println("9.- Mostrar");
+        System.out.println("10.- Salir\n");
         System.out.print("Ingrese la opcion");
         opcion = input.nextInt();
         
@@ -46,7 +49,7 @@ public class Main {
                      if(pila.PilaVacia()){
                         System.out.println("No hay Datos");
                     }else{
-                        pila.UltimoIngresado();
+                         System.out.println(pila.UltimoIngresado());
                     }
                     
                     break;
@@ -62,6 +65,28 @@ public class Main {
                     
                     break;
                 case 7:
+                    if(pila.PilaVacia()){
+                        System.out.println("Esta Vacia");
+                    }else{
+                        System.out.print("Posicion: ");
+                        int pos = input.nextInt();
+                        System.out.println("valor: " + pila.Buscar(pos));
+                    }
+                    break;
+                case 8: 
+                    if(pila.PilaVacia()){
+                        System.out.println("Vacio");
+                    }else{
+                        System.out.print("Ingrese item a Buscar:");
+                        int item = input.nextInt();
+                        List p = pila.BuscarItem(item);
+                        System.out.print("Posicion Encontrada/s: ");
+                        for (int i = 0; i < p.size(); i++) {
+                            System.out.print(p.get(i) + " ");                            
+                        }
+                    }
+                    break;
+                case 9:
                     pila.Mostrar();
                     break;
                 
@@ -69,6 +94,8 @@ public class Main {
                     System.out.println("Error");
                     break;
         }
-    }while(opcion != 8);
+        
+    }while(opcion < 10 && opcion>0);
    
+    }
 }
